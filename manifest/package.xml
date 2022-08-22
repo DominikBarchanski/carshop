@@ -15,6 +15,7 @@
 		<members>LWC_dmlOperation</members>
 		<members>LWC_dmlOperationTest</members>
 		<members>LWC_dmlOrder</members>
+		<members>SCS_PricebookBatch</members>
 		<members>SsoTest</members>
 		<members>TriggerHandler</members>
 		<members>TriggerHandler_Test</members>
@@ -68,7 +69,6 @@
 	</types>
 	<types>
 		<members>ContentVersion</members>
-		<members>Opportunity</members>
 		<members>Order</members>
 		<members>OrderItem</members>
 		<members>Pricebook2</members>
@@ -80,7 +80,16 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>*</members>
+		<members>carBrand</members>
+		<name>GlobalValueSet</name>
+	</types>
+	<types>
+		<members>bankLogos</members>
+		<members>bannerLogo</members>
+		<members>compareIcon</members>
+		<members>display_on_error</members>
+		<members>homePage</members>
+		<members>wallet</members>
 		<name>StaticResource</name>
 	</types>
 	<version>53.0</version>
