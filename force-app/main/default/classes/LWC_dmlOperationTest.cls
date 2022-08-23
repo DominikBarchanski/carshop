@@ -3,7 +3,7 @@
  */
 
 @IsTest
-private class LWC_dmlOperationTest implements HttpCalloutMock {
+private class LWC_dmlOperationTest {
     @TestSetup
     private static void setupTestData() {
         Pricebook2 standartPricebook = new Pricebook2(
@@ -142,60 +142,63 @@ private class LWC_dmlOperationTest implements HttpCalloutMock {
     }
     @IsTest
     static void deleteCart() {
-        LWC_dmlOperation.displayProductToBuy([SELECT Id FROM Shopping_Cart__c LIMIT 1].Id);
+        Shopping_Cart__c item = new Shopping_Cart__c();
+        item.User_Id__c ='1234';
+        item.Product_Id__c ='1234';
+        insert item;
+        LWC_dmlOperation.deleteFromCart(item.id);
     }
-    public HttpResponse respond(HttpRequest param1) {
-        HttpResponse response = new HttpResponse();
-        response.setHeader('Content-Type', 'application/json');
-        response.setBody('{"results":[{"address_components":[{"long_name":"Katowice","short_name":"Katowice","types":["locality","political"]},{"long_name":"Katowice","short_name":"Katowice","types":["administrative_area_level_2","political"]},{"long_name":"Śląskie","short_name":"Śląskie","types":["administrative_area_level_1","political"]},{"long_name":"Polska","short_name":"PL","types":["country","political"]},{"long_name":"40","short_name":"40","types":["postal_code","postal_code_prefix"]}],"formatted_address":"Katowice, Polska","geometry":{"bounds":{"northeast":{"lat":50.2973176,"lng":19.122919},"southwest":{"lat":50.1300272,"lng":18.8914664}},"location":{"lat":50.26489189999999,"lng":19.0237815},"location_type":"APPROXIMATE","viewport":{"northeast":{"lat":50.2973176,"lng":19.122919},"southwest":{"lat":50.1300272,"lng":18.8914664}}},"place_id":"ChIJ0cyhNiPOFkcRu_pZBTUqr7k","types":["locality","political"]}],"status":"OK"}');
-        response.setStatusCode(200);
-        return response;
-    }
-    @IsTest
-    static void apiCart() {
-        Product2 item = [
-                SELECT
-                        Average_Fuel_Consumption__c,
-                        Brands__c,
-                        City__c,
-                        Country__c,
-                        CreatedById,
-                        CreatedDate,
-                        Cylinder_Capacity__c,
-                        Description,
-                        DisplayUrl,
-                        ExternalDataSourceId,
-                        ExternalId,
-                        Family,
-                        Fuel_Consumption_In_The_City__c,
-                        Horsepower__c,
-                        Id,
-                        IsActive,
-                        IsArchived,
-                        IsDeleted,
-                        LastModifiedById,
-                        LastModifiedDate,
-                        LastReferencedDate,
-                        LastViewedDate,
-                        Latitude__c,
-                        Longitude__c,
-                        Main_Photo__c,
-                        Name,
-                        Number_of_Doors__c,
-                        Number_of_Places__c,
-                        ProductCode,
-                        Production_Year__c,
-                        QuantityUnitOfMeasure,
-                        StockKeepingUnit,
-                        Street__c,
-                        SystemModstamp,
-                        Top_Speed__c
-                FROM Product2
-                LIMIT 1
-        ];
-        LWC_dmlOperation.apiCall(item);
-        LWC_dmlOperation.apiCall(null);
-    }
+//    public HttpResponse respond(HttpRequest param1) {
+//        HttpResponse response = new HttpResponse();
+//        response.setHeader('Content-Type', 'application/json');
+//        response.setBody('{"results":[{"address_components":[{"long_name":"Katowice","short_name":"Katowice","types":["locality","political"]},{"long_name":"Katowice","short_name":"Katowice","types":["administrative_area_level_2","political"]},{"long_name":"Śląskie","short_name":"Śląskie","types":["administrative_area_level_1","political"]},{"long_name":"Polska","short_name":"PL","types":["country","political"]},{"long_name":"40","short_name":"40","types":["postal_code","postal_code_prefix"]}],"formatted_address":"Katowice, Polska","geometry":{"bounds":{"northeast":{"lat":50.2973176,"lng":19.122919},"southwest":{"lat":50.1300272,"lng":18.8914664}},"location":{"lat":50.26489189999999,"lng":19.0237815},"location_type":"APPROXIMATE","viewport":{"northeast":{"lat":50.2973176,"lng":19.122919},"southwest":{"lat":50.1300272,"lng":18.8914664}}},"place_id":"ChIJ0cyhNiPOFkcRu_pZBTUqr7k","types":["locality","political"]}],"status":"OK"}');
+//        response.setStatusCode(200);
+//        return response;
+//    }
+//    @IsTest
+//    static void apiCart() {
+//        Product2 item = [
+//                SELECT
+//                        Average_Fuel_Consumption__c,
+//                        Brands__c,
+//                        City__c,
+//                        Country__c,
+//                        CreatedById,
+//                        CreatedDate,
+//                        Cylinder_Capacity__c,
+//                        Description,
+//                        DisplayUrl,
+//                        ExternalDataSourceId,
+//                        ExternalId,
+//                        Family,
+//                        Fuel_Consumption_In_The_City__c,
+//                        Horsepower__c,
+//                        Id,
+//                        IsActive,
+//                        IsArchived,
+//                        IsDeleted,
+//                        LastModifiedById,
+//                        LastModifiedDate,
+//                        LastReferencedDate,
+//                        LastViewedDate,
+//                        Latitude__c,
+//                        Longitude__c,
+//                        Main_Photo__c,
+//                        Name,
+//                        Number_of_Doors__c,
+//                        Number_of_Places__c,
+//                        ProductCode,
+//                        Production_Year__c,
+//                        QuantityUnitOfMeasure,
+//                        StockKeepingUnit,
+//                        Street__c,
+//                        SystemModstamp,
+//                        Top_Speed__c
+//                FROM Product2
+//                LIMIT 1
+//        ];
+//        LWC_dmlOperation.apiCall(item);
+//    }
 
 
 }
