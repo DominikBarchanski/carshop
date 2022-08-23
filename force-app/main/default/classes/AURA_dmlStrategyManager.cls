@@ -113,21 +113,21 @@ public with sharing class AURA_dmlStrategyManager {
     }
     public static List<Strategy__c> setLowest(List<Strategy__c> allStrategy, Map<String, List<PricebookEntry>> allPrice) {
         for (Strategy__c item : allStrategy) {
-            if (allPrice.containsKey(item.Product2id__c)) {
-                Decimal lowestPrice = allPrice.get(item.Product2id__c)[0].UnitPrice;
-                for (PricebookEntry element : allPrice.get(item.Product2id__c)) {
-                    if (element.UnitPrice < lowestPrice) {
-                        lowestPrice = element.UnitPrice;
-                    }
+            // if (allPrice.containsKey(item.Product2id__c)) {
+            //     Decimal lowestPrice = allPrice.get(item.Product2id__c)[0].UnitPrice;
+            //     for (PricebookEntry element : allPrice.get(item.Product2id__c)) {
+            //         if (element.UnitPrice < lowestPrice) {
+            //             lowestPrice = element.UnitPrice;
+            //         }
 
-                }
-                item.Strategy_price__c = lowestPrice;
-            }else{
-                item.Strategy_price__c= item.Standard_Price__c;
-            }
-            item.Strategy_Name__c = 'lowest';
+            //     }
+            //     item.Strategy_price__c = lowestPrice;
+            // }else{
+            //     item.Strategy_price__c= item.Standard_Price__c;
+            // }
+            // item.Strategy_Name__c = 'lowest';
         }
-        return allStrategy;
+        return null;
     }
     public static List<Strategy__c> setHighest(List<Strategy__c> allStrategy, Map<String, List<PricebookEntry>> allPrice) {
         // for (Strategy__c item : allStrategy) {
@@ -151,18 +151,21 @@ public with sharing class AURA_dmlStrategyManager {
     }
     public static List<Strategy__c> setAvg(List<Strategy__c> allStrategy, Map<String, List<PricebookEntry>> allPrice) {
         for (Strategy__c item : allStrategy) {
-            if (allPrice.containsKey(item.Product2id__c)) {
-                Decimal sumPrice= 0 ;
-                for (PricebookEntry element : allPrice.get(item.Product2id__c)) {
-                    sumPrice += element.UnitPrice;
-                }
-                item.Strategy_price__c = sumPrice / allPrice.get(item.Product2id__c).size();
-            }else{
-                item.Strategy_price__c= item.Standard_Price__c;
-            }
-            item.Strategy_Name__c = 'avg';
-        }
-        return allStrategy;
+        //     if (allPrice.containsKey(item.Product2id__c)) {
+        //         Decimal sumPrice= 0 ;
+        //         for (PricebookEntry element : allPrice.get(item.Product2id__c)) {
+        //             sumPrice += element.UnitPrice;
+        //         }
+        //         item.Strategy_price__c = sumPrice / allPrice.get(item.Product2id__c).size();
+        //     }else{
+        //         item.Strategy_price__c= item.Standard_Price__c;
+        //     }
+        //     item.Strategy_Name__c = 'avg';
+        // }
+        // return allStrategy;
     }
+    return null;
+}
+    
 
 }
