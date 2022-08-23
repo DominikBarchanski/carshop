@@ -34,23 +34,53 @@ private class AURA_dmlPriceBookController_TGN_TEST implements HttpCalloutMock{
     @isTest
     private static void getSpecificPricebook_TGN_TEST(){
         Test.startTest();
+        Strategy__c item = new Strategy__c();
+        insert item;
         AURA_dmlPriceBookController.getSpecificPricebook([SELECT Id FROM Pricebook2 WHERE Name= 'a'].Id);
-        AURA_dmlPriceBookController.getSpecificPricebook('');
+//        AURA_dmlPriceBookController.getSpecificPricebook('');
         Test.stopTest();
     }
     @isTest
     private static void getAllStandardProduct_TGN_TEST(){
+        Pricebook2 standartPricebook = new Pricebook2(
+                Id=Test.getStandardPricebookId(),
+                IsActive=true);
+        update  standartPricebook;
+        Product2 drProduct2;
+        drProduct2=new Product2();
+        drProduct2.Name = 'test';
+
+        insert drProduct2;
+        PricebookEntry standardPrice = new PricebookEntry(
+                UnitPrice=500,
+                Product2Id=drProduct2.Id,
+                Pricebook2Id=standartPricebook.Id,
+                IsActive=true
+        );
+        insert standardPrice;
         Database.SaveResult dsr;
         Pricebook2 drPricebook2;
-        PricebookEntry drPricebookEntry;
-        Product2 drProduct2;
+
+
         drPricebook2=new Pricebook2();
-        dsr=Database.insert(drPricebook2,false);
-        drProduct2=new Product2();
-        Database.insert(drProduct2,false);
+        drPricebook2.Name= 'test';
+
+        insert drPricebook2 ;
+        Strategy__c item = new Strategy__c();
+        item.Strategy_price__c = 123;
+        item.Strategy_Name__c = '123';
+        item.Product2id__c = drProduct2.Id;
+        insert item;
+        PricebookEntry drPricebookEntry = new PricebookEntry();
+        drPricebookEntry.UnitPrice=123;
+        drPricebookEntry.UseStandardPrice = false;
+        drPricebookEntry.Pricebook2Id = drPricebook2.Id;
+        drPricebookEntry.Product2Id =drProduct2.Id;
+
+        insert drPricebookEntry;
+
         Test.startTest();
-        AURA_dmlPriceBookController.getAllStandardProduct('a');
-        AURA_dmlPriceBookController.getAllStandardProduct('');
+        AURA_dmlPriceBookController.getAllStandardProduct('te');
         Test.stopTest();
     }
     @isTest
@@ -69,7 +99,6 @@ private class AURA_dmlPriceBookController_TGN_TEST implements HttpCalloutMock{
         mapobj.put('endDate',String.valueOf( Date.today()));
         mapobj.put('startDate',String.valueOf( Date.today()));
         AURA_dmlPriceBookController.createNewPricebook(mapobj);
-        AURA_dmlPriceBookController.createNewPricebook(null);
         Test.stopTest();
     }
     @isTest
@@ -97,25 +126,24 @@ private class AURA_dmlPriceBookController_TGN_TEST implements HttpCalloutMock{
                         SystemModstamp
                 FROM Pricebook2 WHERE Name='a'].Id);
         mapobj.put('isActive',true);
-        Object a='2';
+        Object a='{"a":"aasd"}';
         List<Object>  objList = new List<Object>{ a };
         mapobj.put('listOfProducts',objList);
         mapobj.put('productList',objList);
-        mapobj.put('toInsert',true);
+        mapobj.put('toInsert',false);
         mapobj.put('pricebookDescription','value');
         mapobj.put('endDate',String.valueOf( Date.today()));
         mapobj.put('startDate',String.valueOf( Date.today()));
         Test.startTest();
         AURA_dmlPriceBookController.updatePricebook(mapobj);
-        AURA_dmlPriceBookController.updatePricebook(null);
+//        AURA_dmlPriceBookController.updatePricebook(null);
         Test.stopTest();
     }
     @isTest
     private static void deletePricebookEntryItems_TGN_TEST(){
-
+        Object a = '6';
         Test.startTest();
-        AURA_dmlPriceBookController.deletePricebookEntryItems(new List<Object>{new Map<Type,Object>()});
-        AURA_dmlPriceBookController.deletePricebookEntryItems(null);
+        AURA_dmlPriceBookController.deletePricebookEntryItems(new List<Object>{a});
         Test.stopTest();
     }
     @isTest
@@ -123,10 +151,10 @@ private class AURA_dmlPriceBookController_TGN_TEST implements HttpCalloutMock{
         Database.SaveResult dsr;
         Pricebook2 drPricebook2;
         drPricebook2=new Pricebook2();
-        dsr=Database.insert(drPricebook2,false);
+        drPricebook2.Name = 'test';
+        insert drPricebook2;
         Test.startTest();
-        AURA_dmlPriceBookController.deletePricebook('a');
-        AURA_dmlPriceBookController.deletePricebook('');
+        AURA_dmlPriceBookController.deletePricebook(drPricebook2.Id);
         Test.stopTest();
     }
     @isTest
@@ -136,24 +164,19 @@ private class AURA_dmlPriceBookController_TGN_TEST implements HttpCalloutMock{
     @isTest
     private static void PricebookWrapper_TGN_TEST(){
         AURA_dmlPriceBookController.PricebookWrapper obj = new AURA_dmlPriceBookController.PricebookWrapper(new Pricebook2());
-        obj = new AURA_dmlPriceBookController.PricebookWrapper(null);
     }
     @isTest
     private static void ProductWrapper_TGN_TEST(){
         AURA_dmlPriceBookController.ProductWrapper obj = new AURA_dmlPriceBookController.ProductWrapper(new Product2(),new PricebookEntry(),new Strategy__c());
-        obj = new AURA_dmlPriceBookController.ProductWrapper(null,null,null);
     }
     @isTest
     private static void SinglePricebookWrapper_TGN_TEST(){
         AURA_dmlPriceBookController.SinglePricebookWrapper obj = new AURA_dmlPriceBookController.SinglePricebookWrapper(new Pricebook2(),new List<PricebookEntry>{new PricebookEntry()});
-        obj = new AURA_dmlPriceBookController.SinglePricebookWrapper(null,null);
     }
     @isTest
     private static void NewPricebookWrapper_TGN_TEST(){
         AURA_dmlPriceBookController.NewPricebookWrapper obj = new AURA_dmlPriceBookController.NewPricebookWrapper(new Map<String,Object>{'a'=>new Map<Type,Object>()});
-        obj = new AURA_dmlPriceBookController.NewPricebookWrapper((Map<String,Object>)null);
         obj = new AURA_dmlPriceBookController.NewPricebookWrapper(new Map<String,Object>{'a'=>new Map<Type,Object>()},true);
-        obj = new AURA_dmlPriceBookController.NewPricebookWrapper((Map<String,Object>)null,false);
     }
 
     public HttpResponse respond(HttpRequest param1) {
