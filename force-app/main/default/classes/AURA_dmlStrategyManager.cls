@@ -146,7 +146,7 @@ public with sharing class AURA_dmlStrategyManager {
         //     item.Strategy_Name__c = 'highest';
         // }
         // return allStrategy;
-        return nill;
+        return null;
 
     }
     public static List<Strategy__c> setAvg(List<Strategy__c> allStrategy, Map<String, List<PricebookEntry>> allPrice) {
