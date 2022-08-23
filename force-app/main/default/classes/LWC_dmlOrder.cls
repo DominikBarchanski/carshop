@@ -262,7 +262,7 @@ public with sharing class LWC_dmlOrder {
                 FROM Case WHERE CreatedById=:userID];
         Map<String,Case> caseMap = new Map<String, Case>();
         for (Case item :userCase ){
-            // caseMap.put(item.Order__c,item);
+            caseMap.put(item.Id,item);
         }
 
         List<OrderHistoryWrapper> returnList = new List<OrderHistoryWrapper>();
