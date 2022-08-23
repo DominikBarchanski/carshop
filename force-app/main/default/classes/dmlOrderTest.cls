@@ -10,7 +10,7 @@ private class dmlOrderTest {
                 Id = Test.getStandardPricebookId(),
                 IsActive = true);
         update standartPricebook;
-        Id test = '0017Q00000OARrAQAX';
+        String test = '0017Q00000OARrAQAX';
         Account accc = new Account(Id=test);
         accc.Name = 'asdfa';
         upsert  accc;
