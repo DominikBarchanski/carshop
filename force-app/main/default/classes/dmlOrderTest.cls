@@ -10,15 +10,13 @@ private class dmlOrderTest {
                 Id = Test.getStandardPricebookId(),
                 IsActive = true);
         update standartPricebook;
-        String test = '0017Q00000OARrAQAX';
-        Account accc = new Account(Id=test);
-        accc.Name = 'asdfa';
-        upsert  accc;
+//        Account accc = new Account(Id='0017Q00000OARrAQAX');
+//        accc.Name = 'asdfa';
+//        upsert  accc;
         Account acc = new Account(
-                Name='asdfasd',
-                Id = [SELECT ID FROM Account LIMIT 1].Id
+                Name='asdfasd'
         );
-        update acc;
+        insert acc;
         Pricebook2 pricebookins = new Pricebook2(
                 Name = 'a',
                 IsActive = true,
@@ -91,7 +89,7 @@ private class dmlOrderTest {
         Order neworder = new Order(
                 Order_Address__c = 'wrappedItem.shipping',
                 Description = 'wrappedItem.payment',
-                AccountId = acc.Id,
+                AccountId =[SELECT Id FROM Account LIMIT 1].Id ,
                 Status = 'Paid',
                 EffectiveDate = Date.today(),
                 Pricebook2Id = standartPricebook.Id
@@ -104,7 +102,7 @@ private class dmlOrderTest {
         insert orderHistory;
 
         Case caseTest = new Case();
-        caseTest.AccountId = acc.Id;
+        caseTest.AccountId = [SELECT Id FROM Account LIMIT 1].Id;
         caseTest.Comments = 'comm';
         insert caseTest;
     }

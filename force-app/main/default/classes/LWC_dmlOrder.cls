@@ -23,7 +23,7 @@ public with sharing class LWC_dmlOrder {
 
     @AuraEnabled
     public static Order createOrder(Map<String, Object> orderItem) {
-        Account acc = [SELECT Id FROM Account WHERE Id = '0017Q00000OARrAQAX'];
+        Account acc = [SELECT Id FROM Account LIMIT 1 ];
         Pricebook2 standardPricebook2 = [SELECT Id FROM Pricebook2 WHERE IsStandard = TRUE];
         System.debug(orderItem);
         PricebookEntry itemPricebookEntry = [SELECT Id FROM PricebookEntry WHERE Pricebook2Id = :standardPricebook2.Id AND Product2Id = :(String) orderItem.get('prodId')];
@@ -188,6 +188,7 @@ public with sharing class LWC_dmlOrder {
                         PoDate,
                         PoNumber,
                         Pricebook2Id,
+                        QuoteId,
                         ShippingAddress,
                         ShippingCity,
                         ShippingCountry,
@@ -221,6 +222,8 @@ public with sharing class LWC_dmlOrder {
                         ContactPhone,
                         CreatedById,
                         CreatedDate,
+                        Data_Quality_Description__c,
+                        Data_Quality_Score__c,
                         Description,
                         EngineeringReqNumber__c,
                         EntitlementId,
@@ -236,6 +239,7 @@ public with sharing class LWC_dmlOrder {
                         LastViewedDate,
                         MasterRecordId,
                         MilestoneStatus,
+                        Order__c,
                         Origin,
                         OwnerId,
                         ParentId,
@@ -245,8 +249,11 @@ public with sharing class LWC_dmlOrder {
                         ProductId,
                         Reason,
                         ServiceContractId,
+                        Skill__c,
                         SlaExitDate,
                         SlaStartDate,
+                        SLAViolation__c,
+                        SourceId,
                         Status,
                         StopStartDate,
                         Subject,
@@ -259,7 +266,7 @@ public with sharing class LWC_dmlOrder {
                 FROM Case WHERE CreatedById=:userID];
         Map<String,Case> caseMap = new Map<String, Case>();
         for (Case item :userCase ){
-            caseMap.put(item.Id,item);
+            caseMap.put(item.Order__c,item);
         }
 
         List<OrderHistoryWrapper> returnList = new List<OrderHistoryWrapper>();
@@ -295,6 +302,7 @@ public with sharing class LWC_dmlOrder {
                         ViewCount
                 FROM ContentDistribution
         ];
+        System.debug(photoList);
         Map<String, ContentDistribution> mapOfPhoto = new Map<String, ContentDistribution>();
         for (ContentDistribution item : photoList) {
             mapOfPhoto.put(item.ContentDocumentId,item);
@@ -302,8 +310,6 @@ public with sharing class LWC_dmlOrder {
 
         for (OrderHistory item : userOrder) {
             List<OrderItem> orderItemsList = getOrderItemsList(item.OrderId);
-            System.debug(orderItemsList[0].Product2.Main_Photo__c);
-            System.debug(mapOfPhoto.get(orderItemsList[0].Product2.Main_Photo__c));
             OrderHistoryWrapper itemToList = new OrderHistoryWrapper(orderList.get(item.OrderId), orderItemsList,mapOfPhoto.get(orderItemsList[0].Product2.Main_Photo__c),caseMap.get(item.OrderId));
             returnList.add(itemToList);
         }
@@ -333,6 +339,7 @@ public with sharing class LWC_dmlOrder {
                         Product2.Brands__c,
                         Product2.Main_Photo__c,
                         Quantity,
+                        QuoteLineItemId,
                         ServiceDate,
                         SystemModstamp,
                         TotalPrice,
