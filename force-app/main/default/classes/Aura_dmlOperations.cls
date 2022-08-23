@@ -110,28 +110,28 @@ public without sharing class Aura_dmlOperations {
             }
             insert toAdd;
             System.debug(toAdd.Id);
-            if (recFromJs.photos != null) {
-                if (recFromJs.photos.size() > 0) {
-                    List<ContentVersion> photoRelatedToProduct = [SELECT Id, FirstPublishLocationId, Product__c FROM ContentVersion WHERE ContentDocumentId IN :recFromJs.photos];
-                    for (ContentVersion item : photoRelatedToProduct) {
-                        item.Product__c = toAdd.Id;
-                    }
-                    update photoRelatedToProduct;
-                }
-            }
-            Pricebook2 pricebookId = [SELECT Id FROM Pricebook2 WHERE IsStandard = TRUE LIMIT 1];
-            PricebookEntry newProd = new PricebookEntry();
-            newProd.Pricebook2Id = pricebookId.Id;
-            newProd.Product2Id = toAdd.Id;
-            newProd.IsActive = true;
-            newProd.UnitPrice = recFromJs.price;
-            insert newProd;
-            Strategy__c newItemInStrategy = new Strategy__c();
-            newItemInStrategy.Product2id__c = toAdd.Id;
-            newItemInStrategy.Standard_Price__c = recFromJs.price;
-            newItemInStrategy.Strategy_price__c = recFromJs.price;
-            newItemInStrategy.Strategy_Name__c = 'standard';
-            insert newItemInStrategy;
+            // if (recFromJs.photos != null) {
+            //     if (recFromJs.photos.size() > 0) {
+            //         List<ContentVersion> photoRelatedToProduct = [SELECT Id, FirstPublishLocationId, Product__c FROM ContentVersion WHERE ContentDocumentId IN :recFromJs.photos];
+            //         for (ContentVersion item : photoRelatedToProduct) {
+            //             item.Product__c = toAdd.Id;
+            //         }
+            //         update photoRelatedToProduct;
+            //     }
+            // }
+            // Pricebook2 pricebookId = [SELECT Id FROM Pricebook2 WHERE IsStandard = TRUE LIMIT 1];
+            // PricebookEntry newProd = new PricebookEntry();
+            // newProd.Pricebook2Id = pricebookId.Id;
+            // newProd.Product2Id = toAdd.Id;
+            // newProd.IsActive = true;
+            // newProd.UnitPrice = recFromJs.price;
+            // insert newProd;
+            // Strategy__c newItemInStrategy = new Strategy__c();
+            // newItemInStrategy.Product2id__c = toAdd.Id;
+            // newItemInStrategy.Standard_Price__c = recFromJs.price;
+            // newItemInStrategy.Strategy_price__c = recFromJs.price;
+            // newItemInStrategy.Strategy_Name__c = 'standard';
+            // insert newItemInStrategy;
 
 
             return null;
