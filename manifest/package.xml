@@ -22,7 +22,6 @@
 		<members>dmlOrderTest</members>
 		<members>dmltest</members>
 		<members>googleJSON2Apex</members>
-		<members>scheduleClass</members>
 		<members>scheduleProcessTest</members>
 		<members>schedulePromotions</members>
 		<members>testBatch</members>
