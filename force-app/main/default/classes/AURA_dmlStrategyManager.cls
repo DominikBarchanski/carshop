@@ -101,7 +101,7 @@ public with sharing class AURA_dmlStrategyManager {
                 listForUpdateStrategy = setAvg(allStrategy, productList);
             }
         }
-        update listForUpdateStrategy ;
+        // update listForUpdateStrategy ;
 //        System.debug(listForUpdateStrategy);
     }
     public static List<Strategy__c> setStandard(List<Strategy__c> allStrategy) {
