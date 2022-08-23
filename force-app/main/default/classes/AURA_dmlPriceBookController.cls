@@ -209,18 +209,18 @@ public with sharing class AURA_dmlPriceBookController {
             newPricebook.End_date__c = Date.valueOf(wrappedJS.endDate);
 
             insert newPricebook;
-            List<PricebookEntry> listToPush = new List<PricebookEntry>();
-            for (Object item : wrappedJS.productList) {
-                PricebookEntry entryItem = new PricebookEntry();
-                Map<String, Object> elem = (Map<String, Object>) item;
-                entryItem.Pricebook2Id = newPricebook.Id;
-                entryItem.Product2Id = (Id) elem.get('id');
-                entryItem.IsActive = true ;
-                entryItem.UnitPrice = elem.get('newPrice') != null ? (Decimal) elem.get('newPrice') : (Decimal) elem.get('price') ;
-                listToPush.add(entryItem);
-            }
-            insert listToPush;
-            return 'SUCCESS';
+            // List<PricebookEntry> listToPush = new List<PricebookEntry>();
+            // for (Object item : wrappedJS.productList) {
+            //     PricebookEntry entryItem = new PricebookEntry();
+            //     Map<String, Object> elem = (Map<String, Object>) item;
+            //     entryItem.Pricebook2Id = newPricebook.Id;
+            //     entryItem.Product2Id = (Id) elem.get('id');
+            //     entryItem.IsActive = true ;
+            //     entryItem.UnitPrice = elem.get('newPrice') != null ? (Decimal) elem.get('newPrice') : (Decimal) elem.get('price') ;
+            //     listToPush.add(entryItem);
+            // }
+            // insert listToPush;
+            // return 'SUCCESS';
         } catch (Exception e) {
             System.debug(e);
             return 'ERROR';
@@ -240,31 +240,31 @@ public with sharing class AURA_dmlPriceBookController {
         try {
             List<PricebookEntry> listToPush = new List<PricebookEntry>();
             for (Object item : wrappedJS.productList) {
-                Map<String, Object> elem = (Map<String, Object>) item;
-                if (elem.get('toInsert') == true) {
-                    System.debug(elem);
+            //     Map<String, Object> elem = (Map<String, Object>) item;
+            //     if (elem.get('toInsert') == true) {
+            //         System.debug(elem);
 
-                    PricebookEntry entryItem = new PricebookEntry();
-                    entryItem.Pricebook2Id = pricebook2ToUpdate.Id;
-                    entryItem.Product2Id = (Id) elem.get('Product2Id');
-                    entryItem.IsActive = true ;
-                    entryItem.UnitPrice = elem.get('newPrice') != null ? (Decimal) elem.get('newPrice') : (Decimal) elem.get('UnitPrice') ;
-                    listToPush.add(entryItem);
-                } else {
+            //         PricebookEntry entryItem = new PricebookEntry();
+            //         entryItem.Pricebook2Id = pricebook2ToUpdate.Id;
+            //         entryItem.Product2Id = (Id) elem.get('Product2Id');
+            //         entryItem.IsActive = true ;
+            //         entryItem.UnitPrice = elem.get('newPrice') != null ? (Decimal) elem.get('newPrice') : (Decimal) elem.get('UnitPrice') ;
+            //         listToPush.add(entryItem);
+            //     } else {
 
-                    PricebookEntry entryItem = new PricebookEntry(Id = (Id) elem.get('Id'));
-                    entryItem.UnitPrice = Decimal.valueOf(String.valueOf(elem.get('UnitPrice'))) ;
-                    listToPush.add(entryItem);
-                    System.debug(entryItem);
-                    System.debug(item);
-                }
-                System.debug(listToPush);
-            }
+            //         PricebookEntry entryItem = new PricebookEntry(Id = (Id) elem.get('Id'));
+            //         entryItem.UnitPrice = Decimal.valueOf(String.valueOf(elem.get('UnitPrice'))) ;
+            //         listToPush.add(entryItem);
+            //         System.debug(entryItem);
+            //         System.debug(item);
+            //     }
+            //     System.debug(listToPush);
+            // }
 
-            System.debug(listToPush);
+            // System.debug(listToPush);
 
-            upsert listToPush;
-            return 'SUCCESS';
+            // upsert listToPush;
+            // return 'SUCCESS';
         } catch (Exception e) {
             System.debug(e);
             return 'ERROR';

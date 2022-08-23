@@ -112,10 +112,10 @@ public with sharing class LWC_dmlOrder {
                 this.numberCase= orderCase.CaseNumber ;
                 this.createdDateCase= orderCase.CreatedDate;
             }else {
-                this.statusCase ='';
-                this.subjectCase='';
-                this.numberCase='';
-                this.createdDateCase=Datetime.now();
+                // this.statusCase ='';
+                // this.subjectCase='';
+                // this.numberCase='';
+                // this.createdDateCase=Datetime.now();
             }
 
             Decimal unitPrice = 0;
@@ -299,15 +299,15 @@ public with sharing class LWC_dmlOrder {
         ];
         System.debug(photoList);
         Map<String, ContentDistribution> mapOfPhoto = new Map<String, ContentDistribution>();
-        for (ContentDistribution item : photoList) {
-            mapOfPhoto.put(item.ContentDocumentId,item);
-        }
+        // for (ContentDistribution item : photoList) {
+        //     mapOfPhoto.put(item.ContentDocumentId,item);
+        // }
 
-        for (OrderHistory item : userOrder) {
-            List<OrderItem> orderItemsList = getOrderItemsList(item.OrderId);
-            OrderHistoryWrapper itemToList = new OrderHistoryWrapper(orderList.get(item.OrderId), orderItemsList,mapOfPhoto.get(orderItemsList[0].Product2.Main_Photo__c),caseMap.get(item.OrderId));
-            returnList.add(itemToList);
-        }
+        // for (OrderHistory item : userOrder) {
+        //     List<OrderItem> orderItemsList = getOrderItemsList(item.OrderId);
+        //     OrderHistoryWrapper itemToList = new OrderHistoryWrapper(orderList.get(item.OrderId), orderItemsList,mapOfPhoto.get(orderItemsList[0].Product2.Main_Photo__c),caseMap.get(item.OrderId));
+        //     returnList.add(itemToList);
+        // }
         System.debug(returnList);
         return returnList;
     }

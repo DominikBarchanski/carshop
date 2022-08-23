@@ -372,80 +372,81 @@ public without sharing class LWC_dmlOperation {
             }
 
         }
-        if(getProduct != null && getStrategy != null && mapOfPhoto.get(ProdId) != null){
-            if(false){
-             SearchProductWrapper productToDisplay = new SearchProductWrapper(getProduct, getStrategy, (mapOfContent.containsKey(getProduct.Main_Photo__c) ? mapOfContent.get(getProduct.Main_Photo__c) : new ContentDistribution()), mapOfPhoto.get(ProdId), rating, prodInCart);
-            return productToDisplay;
+        // if(getProduct != null && getStrategy != null && mapOfPhoto.get(ProdId) != null){
+        //     if(false){
+        //      SearchProductWrapper productToDisplay = new SearchProductWrapper(getProduct, getStrategy, (mapOfContent.containsKey(getProduct.Main_Photo__c) ? mapOfContent.get(getProduct.Main_Photo__c) : new ContentDistribution()), mapOfPhoto.get(ProdId), rating, prodInCart);
+        //     return productToDisplay;
 
-            }
-            return null;
-        } else {
-            return null;
-        }
+        //     }
+        //     return null;
+        // } else {
+        //     return null;
+        // }
+        return null;
     }
     @AuraEnabled
     public static List<Product_Rating__c> AddCommentAndRate(String commentId, String userId, String productId, Decimal rate, String title, String body, Decimal rateSafe, Decimal ratePrice, Decimal rateDesign) {
         List<Product_Rating__c> checkIfRated = [SELECT Id FROM Product_Rating__c WHERE User_Id__c = :userId AND Product_Id__c = :productId];
 
-        if (checkIfRated.size() > 0 && commentId == '') {
-            return [
-                    SELECT
-                            Comment__c,
-                            Rate_Price__c,
-                            Rate_Design__c,
-                            Rate_Safety__c,
-                            CreatedById,
-                            CreatedDate,
-                            Id,
-                            IsDeleted,
-                            LastModifiedById,
-                            LastModifiedDate,
-                            CreatedBy.Name,
-                            Name,
-                            OwnerId,
-                            Product_Id__c,
-                            Rating__c,
-                            SystemModstamp,
-                            User_Id__c
-                    FROM Product_Rating__c
-                    WHERE Product_Id__c = :productId
-            ];
-        } else {
-            Product_Rating__c toAdd = commentId == '' ? new Product_Rating__c() : new Product_Rating__c(Id = commentId);
-            toAdd.Product_Id__c = productId;
-            toAdd.User_Id__c = userId;
-            toAdd.Rate_Price__c = ratePrice;
-            toAdd.Rate_Design__c = rateDesign;
-            toAdd.Rate_Safety__c = rateSafe;
-            toAdd.Rating__c = rate;
-            toAdd.Approval__c = 'new';
-            toAdd.Name = title;
-            toAdd.Comment__c = body;
-            upsert toAdd;
-            return [
-                    SELECT
-                            Comment__c,
-                            CreatedById,
-                            CreatedDate,
-                            Id,
-                            Rate_Price__c,
-                            Rate_Design__c,
-                            Rate_Safety__c,
-                            CreatedBy.Name,
-                            IsDeleted,
-                            LastModifiedById,
-                            LastModifiedDate,
-                            Name,
-                            OwnerId,
-                            Product_Id__c,
-                            Rating__c,
-                            SystemModstamp,
-                            User_Id__c
-                    FROM Product_Rating__c
-                    WHERE Product_Id__c = :productId
-            ];
-        }
-
+        // if (checkIfRated.size() > 0 && commentId == '') {
+        //     return [
+        //             SELECT
+        //                     Comment__c,
+        //                     Rate_Price__c,
+        //                     Rate_Design__c,
+        //                     Rate_Safety__c,
+        //                     CreatedById,
+        //                     CreatedDate,
+        //                     Id,
+        //                     IsDeleted,
+        //                     LastModifiedById,
+        //                     LastModifiedDate,
+        //                     CreatedBy.Name,
+        //                     Name,
+        //                     OwnerId,
+        //                     Product_Id__c,
+        //                     Rating__c,
+        //                     SystemModstamp,
+        //                     User_Id__c
+        //             FROM Product_Rating__c
+        //             WHERE Product_Id__c = :productId
+        //     ];
+        // } else {
+        //     Product_Rating__c toAdd = commentId == '' ? new Product_Rating__c() : new Product_Rating__c(Id = commentId);
+        //     toAdd.Product_Id__c = productId;
+        //     toAdd.User_Id__c = userId;
+        //     toAdd.Rate_Price__c = ratePrice;
+        //     toAdd.Rate_Design__c = rateDesign;
+        //     toAdd.Rate_Safety__c = rateSafe;
+        //     toAdd.Rating__c = rate;
+        //     toAdd.Approval__c = 'new';
+        //     toAdd.Name = title;
+        //     toAdd.Comment__c = body;
+        //     upsert toAdd;
+        //     return [
+        //             SELECT
+        //                     Comment__c,
+        //                     CreatedById,
+        //                     CreatedDate,
+        //                     Id,
+        //                     Rate_Price__c,
+        //                     Rate_Design__c,
+        //                     Rate_Safety__c,
+        //                     CreatedBy.Name,
+        //                     IsDeleted,
+        //                     LastModifiedById,
+        //                     LastModifiedDate,
+        //                     Name,
+        //                     OwnerId,
+        //                     Product_Id__c,
+        //                     Rating__c,
+        //                     SystemModstamp,
+        //                     User_Id__c
+        //             FROM Product_Rating__c
+        //             WHERE Product_Id__c = :productId
+        //     ];
+        // }
+return null;
     }
     @AuraEnabled
     public static List<Product_Rating__c> removeAddedComment(String commentId, String currentProduct) {
@@ -482,10 +483,10 @@ public without sharing class LWC_dmlOperation {
         List<Shopping_Cart__c> alreadyIn = [SELECT Id, User_Id__c, Product_Id__c FROM Shopping_Cart__c WHERE User_Id__c = :userid AND Product_Id__c = :prodId];
         System.debug(alreadyIn);
         if (!(alreadyIn.size() > 0)) {
-            Shopping_Cart__c newProdInCart = new Shopping_Cart__c();
-            newProdInCart.User_Id__c = (String) productWrapper.get('userId');
-            newProdInCart.Product_Id__c = (String) productWrapper.get('prodId');
-            insert newProdInCart;
+            // Shopping_Cart__c newProdInCart = new Shopping_Cart__c();
+            // newProdInCart.User_Id__c = (String) productWrapper.get('userId');
+            // newProdInCart.Product_Id__c = (String) productWrapper.get('prodId');
+            // insert newProdInCart;
         }
         return [
                 SELECT

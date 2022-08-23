@@ -58,17 +58,17 @@ public with sharing class AURA_dmlStrategyManager {
                 WHERE Pricebook2Id IN :allPricebookId
         ];
         System.debug(allPricebookEntries);
-        Map<String, List<PricebookEntry>> productList = new Map<String, List<PricebookEntry>>();
-        for (PricebookEntry item : allPricebookEntries) {
-            if (productList.containsKey(item.Product2Id)) {
-                productList.get(item.Product2Id).add(item);
-            } else {
-                productList.put(item.Product2Id, new List<PricebookEntry>{
-                        item
-                });
-            }
-        }
-        System.debug(productList);
+        // Map<String, List<PricebookEntry>> productList = new Map<String, List<PricebookEntry>>();
+        // for (PricebookEntry item : allPricebookEntries) {
+        //     if (productList.containsKey(item.Product2Id)) {
+        //         productList.get(item.Product2Id).add(item);
+        //     } else {
+        //         productList.put(item.Product2Id, new List<PricebookEntry>{
+        //                 item
+        //         });
+        //     }
+        // }
+        // System.debug(productList);
 
         List<Strategy__c> allStrategy = [
                 SELECT
