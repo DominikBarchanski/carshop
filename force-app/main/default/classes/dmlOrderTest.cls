@@ -90,7 +90,7 @@ private class dmlOrderTest {
                 Order_Address__c = 'wrappedItem.shipping',
                 Description = 'wrappedItem.payment',
                 AccountId =[SELECT Id FROM Account LIMIT 1].Id ,
-                Status = 'Activated',
+                Status = 'Draft',
                 EffectiveDate = Date.today(),
                 Pricebook2Id = standartPricebook.Id
         );
