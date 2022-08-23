@@ -38,57 +38,60 @@ private class ContentVersionHelperTest {
         insert item;
         ContentVersionHelper.insertContentDistribution(new List<ContentVersion>{item});
     }
-//    @IsTest
-//    static void testBehaviorOvverriade() {
-//        ContentVersion item = [
-//                SELECT
-//                        Checksum,
-//                        ContentBodyId,
-//                        ContentDocumentId,
-//                        ContentLocation,
-//                        ContentModifiedById,
-//                        ContentModifiedDate,
-//                        ContentSize,
-//                        ContentUrl,
-//                        CreatedById,
-//                        CreatedDate,
-//                        Description,
-//                        ExternalDataSourceId,
-//                        ExternalDocumentInfo1,
-//                        ExternalDocumentInfo2,
-//                        FeaturedContentBoost,
-//                        FeaturedContentDate,
-//                        FileExtension,
-//                        FileType,
-//                        FirstPublishLocationId,
-//                        Id,
-//                        IsAssetEnabled,
-//                        IsDeleted,
-//                        IsLatest,
-//                        IsMajorVersion,
-//                        LastModifiedById,
-//                        LastModifiedDate,
-//                        NegativeRatingCount,
-//                        NetworkId,
-//                        Origin,
-//                        OwnerId,
-//                        PathOnClient,
-//                        PositiveRatingCount,
-//                        Product__c,
-//                        PublishStatus,
-//                        RatingCount,
-//                        ReasonForChange,
-//                        SharingOption,
-//                        SharingPrivacy,
-//                        SystemModstamp,
-//                        TagCsv,
-//                        TextPreview,
-//                        Title,
-//                        VersionData,
-//                        VersionNumber
-//                FROM ContentVersion LIMIT 1];
-//        item.Title ='test';
-//        update item;
-//
-//    }
+    @IsTest
+    static void testBehaviorOvverriade() {
+        Product2 items = new Product2(Name='test');
+        insert items;
+        ContentVersion item = [
+                SELECT
+                        Checksum,
+                        ContentBodyId,
+                        ContentDocumentId,
+                        ContentLocation,
+                        ContentModifiedById,
+                        ContentModifiedDate,
+                        ContentSize,
+                        ContentUrl,
+                        CreatedById,
+                        CreatedDate,
+                        Description,
+                        ExternalDataSourceId,
+                        ExternalDocumentInfo1,
+                        ExternalDocumentInfo2,
+                        FeaturedContentBoost,
+                        FeaturedContentDate,
+                        FileExtension,
+                        FileType,
+                        FirstPublishLocationId,
+                        Id,
+                        IsAssetEnabled,
+                        IsDeleted,
+                        IsLatest,
+                        IsMajorVersion,
+                        LastModifiedById,
+                        LastModifiedDate,
+                        NegativeRatingCount,
+                        NetworkId,
+                        Origin,
+                        OwnerId,
+                        PathOnClient,
+                        PositiveRatingCount,
+                        Product__c,
+                        PublishStatus,
+                        RatingCount,
+                        ReasonForChange,
+                        SharingOption,
+                        SharingPrivacy,
+                        SystemModstamp,
+                        TagCsv,
+                        TextPreview,
+                        Title,
+                        VersionData,
+                        VersionNumber
+                FROM ContentVersion LIMIT 1];
+        item.Title ='test';
+        item.Product__c = items.Id;
+        update item;
+
+    }
 }
