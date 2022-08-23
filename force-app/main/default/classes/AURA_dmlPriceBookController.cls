@@ -266,6 +266,7 @@ public with sharing class AURA_dmlPriceBookController {
 
             // upsert listToPush;
             // return 'SUCCESS';
+            return null;
         } catch (Exception e) {
             System.debug(e);
             return 'ERROR';
