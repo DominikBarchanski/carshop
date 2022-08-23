@@ -221,7 +221,6 @@ public with sharing class LWC_dmlOrder {
                         ContactPhone,
                         CreatedById,
                         CreatedDate,
-                        Data_Quality_Score__c,
                         Description,
                         EngineeringReqNumber__c,
                         EntitlementId,
