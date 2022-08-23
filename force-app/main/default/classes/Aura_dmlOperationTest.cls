@@ -62,7 +62,7 @@ private class Aura_dmlOperationTest implements HttpCalloutMock{
         Test.setMock(HttpCalloutMock.class, new Aura_dmlOperationTest());
 
         Aura_dmlOperations.insertProduct(mapjs);
-        Aura_dmlOperations.insertProduct(null);
+
     }
     @IsTest
     static void testInsertProductbrand() {
