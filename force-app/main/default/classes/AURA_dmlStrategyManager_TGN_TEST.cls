@@ -70,7 +70,7 @@ private class AURA_dmlStrategyManager_TGN_TEST {
                 Product2id__c = [SELECT Id FROM Product2 WHERE Name='a' LIMIT 1].Id,
                 Strategy_price__c=100,
                 Strategy_Name__c='standard'
-
+                
 
         );
         List<Strategy__c> listStrategies = new List<Strategy__c>();
