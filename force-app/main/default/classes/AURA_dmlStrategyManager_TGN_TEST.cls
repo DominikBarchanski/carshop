@@ -19,9 +19,18 @@ private class AURA_dmlStrategyManager_TGN_TEST {
     @isTest
     private static void setSaleStrategy_TGN_TEST() {
         Test.startTest();
+        Product2 prod1 = new Product2(Name='a');
+        insert prod1;
+        PricebookEntry entry = new PricebookEntry(
+                UnitPrice=500,
+                Product2Id=prod1.Id,
+                Pricebook2Id=standartPricebook.Id,
+                IsActive=true
+        );
+        insert entry;
         AURA_dmlStrategyManager.setSaleStrategy('standard');
         AURA_dmlStrategyManager.setSaleStrategy('lowest');
-        // AURA_dmlStrategyManager.setSaleStrategy('highest');
+        AURA_dmlStrategyManager.setSaleStrategy('highest');
         AURA_dmlStrategyManager.setSaleStrategy('avg');
         Test.stopTest();
     }
