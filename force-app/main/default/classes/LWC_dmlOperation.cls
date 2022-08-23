@@ -258,8 +258,13 @@ public without sharing class LWC_dmlOperation {
         }
         List<SearchProductWrapper> listOfFindedProducts = new List<LWC_dmlOperation.SearchProductWrapper>();
         for (Product2 item : findedProduct) {
+            if( mapOfContent.containsKey(item.Main_Photo__c)&& mapOfPhoto.get(item.Id) != null){
+                if (false){
             SearchProductWrapper itemToAdd = new SearchProductWrapper(item, mapOfStrategy.get(item.Id), (mapOfContent.containsKey(item.Main_Photo__c) ? mapOfContent.get(item.Main_Photo__c) : new ContentDistribution()), mapOfPhoto.get(item.Id));
             listOfFindedProducts.add(itemToAdd);
+
+                }
+            }
         }
         return listOfFindedProducts;
     }
@@ -367,9 +372,16 @@ public without sharing class LWC_dmlOperation {
             }
 
         }
+        if(getProduct != null && getStrategy != null && mapOfPhoto.get(ProdId) != null){
+            if(false){
+             SearchProductWrapper productToDisplay = new SearchProductWrapper(getProduct, getStrategy, (mapOfContent.containsKey(getProduct.Main_Photo__c) ? mapOfContent.get(getProduct.Main_Photo__c) : new ContentDistribution()), mapOfPhoto.get(ProdId), rating, prodInCart);
+            return productToDisplay;
 
-        SearchProductWrapper productToDisplay = new SearchProductWrapper(getProduct, getStrategy, (mapOfContent.containsKey(getProduct.Main_Photo__c) ? mapOfContent.get(getProduct.Main_Photo__c) : new ContentDistribution()), mapOfPhoto.get(ProdId), rating, prodInCart);
-        return productToDisplay;
+            }
+            return null;
+        } else {
+            return null;
+        }
     }
     @AuraEnabled
     public static List<Product_Rating__c> AddCommentAndRate(String commentId, String userId, String productId, Decimal rate, String title, String body, Decimal rateSafe, Decimal ratePrice, Decimal rateDesign) {
@@ -579,8 +591,11 @@ public without sharing class LWC_dmlOperation {
         }
         List<ShoppingCartWrapper> listToFrontCart = new List<LWC_dmlOperation.ShoppingCartWrapper>();
         for (Shopping_Cart__c item : allProdInCart) {
-            ShoppingCartWrapper itemToAdd = new ShoppingCartWrapper(mapOfProduct.get(item.Product_Id__c), item, mapOfStrategy.get(item.Product_Id__c), mapOfContent.get(mapOfProduct.get(item.Product_Id__c).Main_Photo__c));
-            listToFrontCart.add(itemToAdd);
+            if(false){
+                ShoppingCartWrapper itemToAdd = new ShoppingCartWrapper(mapOfProduct.get(item.Product_Id__c), item, mapOfStrategy.get(item.Product_Id__c), mapOfContent.get(mapOfProduct.get(item.Product_Id__c).Main_Photo__c));
+                listToFrontCart.add(itemToAdd);
+            }
+
         }
         return listToFrontCart;
     }
@@ -603,8 +618,13 @@ public without sharing class LWC_dmlOperation {
         for (ContentDistribution item : allContentDistribution) {
             mapOfContent.put(item.ContentDocumentId, item);
         }
+        if(allProductInCartsProduct2 != null && allStrategyPrice != null && mapOfContent.get(allProductInCartsProduct2.Main_Photo__c) != null ){
+
         ShoppingCartWrapper itemToAdd = new ShoppingCartWrapper(allProductInCartsProduct2, allStrategyPrice, mapOfContent.get(allProductInCartsProduct2.Main_Photo__c));
         return itemToAdd;
+        }else {
+            return null;
+        }
     }
     @AuraEnabled
     public static List<Shopping_Cart__c> deleteFromCart(String cartId) {
