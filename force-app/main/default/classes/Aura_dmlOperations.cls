@@ -10,12 +10,10 @@ public without sharing class Aura_dmlOperations {
 
     @AuraEnabled
     public static String deleteDocuments(String docId) {
-        try {
+       
             delete [SELECT Id FROM ContentDocument WHERE Id = :docId];
             return 'SUCCESS';
-        } catch (Exception ex) {
-            throw new AuraHandledException(ex.getMessage());
-        }
+      
     }
 
     class jsDataWrapper {
