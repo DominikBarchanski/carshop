@@ -19,6 +19,10 @@ private class AURA_dmlStrategyManager_TGN_TEST {
     @isTest
     private static void setSaleStrategy_TGN_TEST() {
         Test.startTest();
+        Pricebook2 standartPricebook = new Pricebook2(
+                Id=Test.getStandardPricebookId(),
+                IsActive=true);
+        update  standartPricebook;
         Product2 prod1 = new Product2(Name='a');
         insert prod1;
         PricebookEntry entry = new PricebookEntry(
