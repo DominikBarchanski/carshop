@@ -247,7 +247,6 @@ public with sharing class LWC_dmlOrder {
                         ServiceContractId,
                         SlaExitDate,
                         SlaStartDate,
-                        SourceId,
                         Status,
                         StopStartDate,
                         Subject,
