@@ -138,6 +138,7 @@ private class LWC_dmlOperationTest {
     }
     @IsTest
     static void displayCart() {
+        
         LWC_dmlOperation.displayProductToBuy([SELECT Id FROM Product2 LIMIT 1].Id);
     }
     @IsTest
