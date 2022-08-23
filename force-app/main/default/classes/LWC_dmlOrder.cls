@@ -32,7 +32,7 @@ public with sharing class LWC_dmlOrder {
                 Order_Address__c = wrappedItem.shipping,
                 Description = wrappedItem.payment,
                 AccountId = acc.Id,
-                Status = 'Paid',
+                Status = 'Draft',
                 EffectiveDate = Date.today(),
                 Pricebook2Id = standardPricebook2.Id
         );
