@@ -647,25 +647,25 @@ public without sharing class LWC_dmlOperation {
         ];
     }
 
-    @AuraEnabled
-    public static Product2 apiCall(Product2 item) {
-        Http http = new Http();
-        HttpRequest request = new HttpRequest();
-        String apiAddress = item.Country__c +'+'+item.City__c+'+'+item.Street__c;
-        apiAddress = apiAddress.replace(' ','+');
-        request.setEndpoint('https://maps.googleapis.com/maps/api/geocode/json?address='+apiAddress+'&key=AIzaSyC6TeiRM56HgxvqR7ncLeZST7Sid6Pky2s');
-        request.setMethod('GET');
-        System.debug(request);
-        HttpResponse response = http.send(request);
-        if (response.getStatusCode() == 200) {
-            googleJSON2Apex items = googleJSON2Apex.parse(response.getBody());
-            String lat= String.valueOf(items.results[0].geometry.location.lat);
-            String lng=String.valueOf( items.results[0].geometry.location.lng);
-            item.Latitude__c = lat;
-            item.Longitude__c = lng;
-            return item;
-        }
-        return new Product2();
-    }
+    // @AuraEnabled
+    // public static Product2 apiCall(Product2 item) {
+    //     Http http = new Http();
+    //     HttpRequest request = new HttpRequest();
+    //     String apiAddress = item.Country__c +'+'+item.City__c+'+'+item.Street__c;
+    //     apiAddress = apiAddress.replace(' ','+');
+    //     request.setEndpoint('https://maps.googleapis.com/maps/api/geocode/json?address='+apiAddress+'&key=AIzaSyC6TeiRM56HgxvqR7ncLeZST7Sid6Pky2s');
+    //     request.setMethod('GET');
+    //     System.debug(request);
+    //     HttpResponse response = http.send(request);
+    //     if (response.getStatusCode() == 200) {
+    //         googleJSON2Apex items = googleJSON2Apex.parse(response.getBody());
+    //         String lat= String.valueOf(items.results[0].geometry.location.lat);
+    //         String lng=String.valueOf( items.results[0].geometry.location.lng);
+    //         item.Latitude__c = lat;
+    //         item.Longitude__c = lng;
+    //         return item;
+    //     }
+    //     return new Product2();
+    // }
 
 }
