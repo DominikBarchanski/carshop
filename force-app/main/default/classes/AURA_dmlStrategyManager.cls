@@ -97,9 +97,6 @@ public with sharing class AURA_dmlStrategyManager {
             when 'lowest' {
                 listForUpdateStrategy = setLowest(allStrategy, productList);
             }
-            when 'highest' {
-                listForUpdateStrategy = setHighest(allStrategy, productList);
-            }
             when 'avg' {
                 listForUpdateStrategy = setAvg(allStrategy, productList);
             }
@@ -133,22 +130,23 @@ public with sharing class AURA_dmlStrategyManager {
         return allStrategy;
     }
     public static List<Strategy__c> setHighest(List<Strategy__c> allStrategy, Map<String, List<PricebookEntry>> allPrice) {
-        for (Strategy__c item : allStrategy) {
-            if (allPrice.containsKey(item.Product2id__c)) {
-                Decimal lowestPrice = allPrice.get(item.Product2id__c)[0].UnitPrice;
-                for (PricebookEntry element : allPrice.get(item.Product2id__c)) {
-                    if (element.UnitPrice > lowestPrice) {
-                        lowestPrice = element.UnitPrice;
-                    }
+        // for (Strategy__c item : allStrategy) {
+        //     if (allPrice.containsKey(item.Product2id__c)) {
+        //         Decimal lowestPrice = allPrice.get(item.Product2id__c)[0].UnitPrice;
+        //         for (PricebookEntry element : allPrice.get(item.Product2id__c)) {
+        //             if (element.UnitPrice > lowestPrice) {
+        //                 lowestPrice = element.UnitPrice;
+        //             }
 
-                }
-                item.Strategy_price__c = lowestPrice;
-            }else{
-                item.Strategy_price__c= item.Standard_Price__c;
-            }
-            item.Strategy_Name__c = 'highest';
-        }
-        return allStrategy;
+        //         }
+        //         item.Strategy_price__c = lowestPrice;
+        //     }else{
+        //         item.Strategy_price__c= item.Standard_Price__c;
+        //     }
+        //     item.Strategy_Name__c = 'highest';
+        // }
+        // return allStrategy;
+        return nill;
 
     }
     public static List<Strategy__c> setAvg(List<Strategy__c> allStrategy, Map<String, List<PricebookEntry>> allPrice) {
