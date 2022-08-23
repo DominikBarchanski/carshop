@@ -138,7 +138,6 @@ private class LWC_dmlOperationTest {
     }
     @IsTest
     static void displayCart() {
-        
         LWC_dmlOperation.displayProductToBuy([SELECT Id FROM Product2 LIMIT 1].Id);
     }
     @IsTest
@@ -149,7 +148,102 @@ private class LWC_dmlOperationTest {
         insert item;
         LWC_dmlOperation.deleteFromCart(item.id);
     }
+    @IsTest
+    static void wrrappertest (){
+        Product2 prod = new Product2();
+        Shopping_Cart__c sc = new Shopping_Cart__c();
+        Strategy__c st = new Strategy__c();
+        st.Strategy_price__c = 5;
+        ContentDistribution cd = new ContentDistribution();
+        LWC_dmlOperation.ShoppingCartWrapper test= new LWC_dmlOperation.ShoppingCartWrapper(prod,sc,st,cd);
+    }
+    @IsTest
+    static void wrrappertest2 (){
+        Product2 prod = new Product2();
+        Shopping_Cart__c sc = new Shopping_Cart__c();
+        Strategy__c st = new Strategy__c();
+        st.Strategy_price__c = 5;
+        ContentDistribution cd = new ContentDistribution();
+        LWC_dmlOperation.ShoppingCartWrapper test= new LWC_dmlOperation.ShoppingCartWrapper(prod,st,cd);
+    }
+    @IsTest
+    static void wrrappertest3 (){
+        Product2 prod = new Product2();
+        Shopping_Cart__c sc = new Shopping_Cart__c();
+        Strategy__c st = new Strategy__c();
+        st.Strategy_price__c = 5;
+        st.Standard_Price__c = 5;
+        ContentDistribution cd = new ContentDistribution();
+        List<String> lt = new List<String>{'a'};
+        LWC_dmlOperation.SearchProductWrapper test= new LWC_dmlOperation.SearchProductWrapper(prod,st,cd,lt);
+    }
+    @IsTest
+    static void wrrappertest4 (){
+        Product2 prod = new Product2();
+        Shopping_Cart__c sc = new Shopping_Cart__c();
+        Strategy__c st = new Strategy__c();
+        st.Strategy_price__c = 5;
+        st.Standard_Price__c = 5;
+        ContentDistribution cd = new ContentDistribution();
+        List<String> lt = new List<String>{'a'};
+        Product_Rating__c item1 = new Product_Rating__c();
+        Shopping_Cart__c item2 = new Shopping_Cart__c();
+        List<Product_Rating__c> ltp = new List<Product_Rating__c>{item1};
+        List<Shopping_Cart__c> ltc = new List<Shopping_Cart__c>{item2};
 
+        LWC_dmlOperation.SearchProductWrapper test= new LWC_dmlOperation.SearchProductWrapper(prod,st,cd,lt,ltp,ltc);
+    }
+//    public HttpResponse respond(HttpRequest param1) {
+//        HttpResponse response = new HttpResponse();
+//        response.setHeader('Content-Type', 'application/json');
+//        response.setBody('{"results":[{"address_components":[{"long_name":"Katowice","short_name":"Katowice","types":["locality","political"]},{"long_name":"Katowice","short_name":"Katowice","types":["administrative_area_level_2","political"]},{"long_name":"Śląskie","short_name":"Śląskie","types":["administrative_area_level_1","political"]},{"long_name":"Polska","short_name":"PL","types":["country","political"]},{"long_name":"40","short_name":"40","types":["postal_code","postal_code_prefix"]}],"formatted_address":"Katowice, Polska","geometry":{"bounds":{"northeast":{"lat":50.2973176,"lng":19.122919},"southwest":{"lat":50.1300272,"lng":18.8914664}},"location":{"lat":50.26489189999999,"lng":19.0237815},"location_type":"APPROXIMATE","viewport":{"northeast":{"lat":50.2973176,"lng":19.122919},"southwest":{"lat":50.1300272,"lng":18.8914664}}},"place_id":"ChIJ0cyhNiPOFkcRu_pZBTUqr7k","types":["locality","political"]}],"status":"OK"}');
+//        response.setStatusCode(200);
+//        return response;
+//    }
+//    @IsTest
+//    static void apiCart() {
+//        Product2 item = [
+//                SELECT
+//                        Average_Fuel_Consumption__c,
+//                        Brands__c,
+//                        City__c,
+//                        Country__c,
+//                        CreatedById,
+//                        CreatedDate,
+//                        Cylinder_Capacity__c,
+//                        Description,
+//                        DisplayUrl,
+//                        ExternalDataSourceId,
+//                        ExternalId,
+//                        Family,
+//                        Fuel_Consumption_In_The_City__c,
+//                        Horsepower__c,
+//                        Id,
+//                        IsActive,
+//                        IsArchived,
+//                        IsDeleted,
+//                        LastModifiedById,
+//                        LastModifiedDate,
+//                        LastReferencedDate,
+//                        LastViewedDate,
+//                        Latitude__c,
+//                        Longitude__c,
+//                        Main_Photo__c,
+//                        Name,
+//                        Number_of_Doors__c,
+//                        Number_of_Places__c,
+//                        ProductCode,
+//                        Production_Year__c,
+//                        QuantityUnitOfMeasure,
+//                        StockKeepingUnit,
+//                        Street__c,
+//                        SystemModstamp,
+//                        Top_Speed__c
+//                FROM Product2
+//                LIMIT 1
+//        ];
+//        LWC_dmlOperation.apiCall(item);
+//    }
 
 
 }
