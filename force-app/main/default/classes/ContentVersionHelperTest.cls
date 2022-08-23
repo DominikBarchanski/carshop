@@ -31,59 +31,64 @@ private class ContentVersionHelperTest {
     }
     @IsTest
     static void testBehavior() {
-        ContentVersionHelper.insertContentDistribution(new List<ContentVersion>{new ContentVersion()});
+        Product2 prod = new Product2(name='test');
+        insert prod;
+        Blob bodyBlob = Blob.valueOf('Test ContentVersion Body');
+        ContentVersion item= new ContentVersion(Product__c=prod.Id,VersionData=bodyBlob,Title='test',PathOnClient='/src');
+        insert item;
+        ContentVersionHelper.insertContentDistribution(new List<ContentVersion>{item});
     }
-    @IsTest
-    static void testBehaviorOvverriade() {
-        ContentVersion item = [
-                SELECT
-                        Checksum,
-                        ContentBodyId,
-                        ContentDocumentId,
-                        ContentLocation,
-                        ContentModifiedById,
-                        ContentModifiedDate,
-                        ContentSize,
-                        ContentUrl,
-                        CreatedById,
-                        CreatedDate,
-                        Description,
-                        ExternalDataSourceId,
-                        ExternalDocumentInfo1,
-                        ExternalDocumentInfo2,
-                        FeaturedContentBoost,
-                        FeaturedContentDate,
-                        FileExtension,
-                        FileType,
-                        FirstPublishLocationId,
-                        Id,
-                        IsAssetEnabled,
-                        IsDeleted,
-                        IsLatest,
-                        IsMajorVersion,
-                        LastModifiedById,
-                        LastModifiedDate,
-                        NegativeRatingCount,
-                        NetworkId,
-                        Origin,
-                        OwnerId,
-                        PathOnClient,
-                        PositiveRatingCount,
-                        Product__c,
-                        PublishStatus,
-                        RatingCount,
-                        ReasonForChange,
-                        SharingOption,
-                        SharingPrivacy,
-                        SystemModstamp,
-                        TagCsv,
-                        TextPreview,
-                        Title,
-                        VersionData,
-                        VersionNumber
-                FROM ContentVersion LIMIT 1];
-        item.Title ='test';
-        update item;
-
-    }
+//    @IsTest
+//    static void testBehaviorOvverriade() {
+//        ContentVersion item = [
+//                SELECT
+//                        Checksum,
+//                        ContentBodyId,
+//                        ContentDocumentId,
+//                        ContentLocation,
+//                        ContentModifiedById,
+//                        ContentModifiedDate,
+//                        ContentSize,
+//                        ContentUrl,
+//                        CreatedById,
+//                        CreatedDate,
+//                        Description,
+//                        ExternalDataSourceId,
+//                        ExternalDocumentInfo1,
+//                        ExternalDocumentInfo2,
+//                        FeaturedContentBoost,
+//                        FeaturedContentDate,
+//                        FileExtension,
+//                        FileType,
+//                        FirstPublishLocationId,
+//                        Id,
+//                        IsAssetEnabled,
+//                        IsDeleted,
+//                        IsLatest,
+//                        IsMajorVersion,
+//                        LastModifiedById,
+//                        LastModifiedDate,
+//                        NegativeRatingCount,
+//                        NetworkId,
+//                        Origin,
+//                        OwnerId,
+//                        PathOnClient,
+//                        PositiveRatingCount,
+//                        Product__c,
+//                        PublishStatus,
+//                        RatingCount,
+//                        ReasonForChange,
+//                        SharingOption,
+//                        SharingPrivacy,
+//                        SystemModstamp,
+//                        TagCsv,
+//                        TextPreview,
+//                        Title,
+//                        VersionData,
+//                        VersionNumber
+//                FROM ContentVersion LIMIT 1];
+//        item.Title ='test';
+//        update item;
+//
+//    }
 }

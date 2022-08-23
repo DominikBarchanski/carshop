@@ -10,8 +10,12 @@ private class dmlOrderTest {
                 Id = Test.getStandardPricebookId(),
                 IsActive = true);
         update standartPricebook;
+        Account accc = new Account(Id='0017Q00000OARrAQAX');
+        accc.Name = 'asdfa';
+        upsert  accc;
         Account acc = new Account(
-                Id = '0017Q00000OARrAQAX'
+                Name='asdfasd',
+                Id = [SELECT ID FROM Account LIMIT 1].Id
         );
         update acc;
         Pricebook2 pricebookins = new Pricebook2(
@@ -113,12 +117,13 @@ private class dmlOrderTest {
         itemMap.put('payment', 'a');
         itemMap.put('userId', [SELECT Id, CreatedById FROM OrderHistory LIMIT 1].CreatedById);
         LWC_dmlOrder.createOrder(itemMap);
-        LWC_dmlOrder.userOrderHistory([SELECT Id, CreatedById FROM OrderHistory LIMIT 1].CreatedById);
+        LWC_dmlOrder.userOrderHistory('test');
     }
     @IsTest
     static void wrapperTest() {
         Order ord = new Order();
         OrderItem orderItem = new OrderItem();
+        orderItem.UnitPrice = 100;
         List<OrderItem> lo = new List<OrderItem>{
                 orderItem
         };
@@ -130,6 +135,7 @@ private class dmlOrderTest {
     static void wrapperTest2() {
         Order ord = new Order();
         OrderItem orderItem = new OrderItem();
+        orderItem.UnitPrice = 100;
         List<OrderItem> lo = new List<OrderItem>{
                 orderItem
         };

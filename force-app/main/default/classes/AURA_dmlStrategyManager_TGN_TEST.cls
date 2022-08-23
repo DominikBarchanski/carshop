@@ -31,7 +31,7 @@ private class AURA_dmlStrategyManager_TGN_TEST {
         AURA_dmlStrategyManager.setStandard(new List<Strategy__c>{
                 new Strategy__c()
         });
-        AURA_dmlStrategyManager.setStandard(null);
+//        AURA_dmlStrategyManager.setStandard(null);
         Test.stopTest();
     }
     @isTest
