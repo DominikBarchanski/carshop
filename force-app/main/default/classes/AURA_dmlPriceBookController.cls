@@ -221,6 +221,7 @@ public with sharing class AURA_dmlPriceBookController {
             // }
             // insert listToPush;
             // return 'SUCCESS';
+            return null;
         } catch (Exception e) {
             System.debug(e);
             return 'ERROR';
@@ -239,7 +240,7 @@ public with sharing class AURA_dmlPriceBookController {
         update pricebook2ToUpdate;
         try {
             List<PricebookEntry> listToPush = new List<PricebookEntry>();
-            for (Object item : wrappedJS.productList) {
+            // for (Object item : wrappedJS.productList) {
             //     Map<String, Object> elem = (Map<String, Object>) item;
             //     if (elem.get('toInsert') == true) {
             //         System.debug(elem);

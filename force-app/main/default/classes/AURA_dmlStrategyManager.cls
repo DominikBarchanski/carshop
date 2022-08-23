@@ -69,6 +69,8 @@ public with sharing class AURA_dmlStrategyManager {
         //     }
         // }
         // System.debug(productList);
+        PricebookEntry itemnew = new PricebookEntry();
+        productList.put(item.Product2Id, new List<PricebookEntry>{itemnew});
 
         List<Strategy__c> allStrategy = [
                 SELECT
